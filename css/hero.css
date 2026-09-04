@@ -210,9 +210,22 @@
 
 /* ---------- Responsive ---------- */
 @media (max-width: 980px) {
-  .hero-inner { grid-template-columns: 1fr; }
-  .hero-visual { min-height: 380px; order: -1; }
+  .hero-inner {
+    grid-template-columns: 1fr;
+    grid-template-areas:
+      "content"
+      "visual";
+  }
+  .hero-copy { grid-area: content; }
+  .hero-visual { grid-area: visual; min-height: 380px; margin-top: clamp(24px, 6vw, 48px); }
   .ecosystem { min-height: 380px; }
   .node-core { width: 120px; }
   .node-vocalis, .node-saral, .node-creative, .node-workflow { width: 140px; padding: 10px 12px; }
+}
+
+@media (max-width: 440px) {
+  .hero-visual { min-height: 340px; }
+  .ecosystem { min-height: 340px; }
+  .node-vocalis, .node-saral, .node-creative, .node-workflow { width: 128px; padding: 9px 10px; }
+  .node-caption { font-size: 0.66rem; }
 }

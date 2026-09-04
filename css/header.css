@@ -1112,6 +1112,20 @@ body {
 
 
   /* -------------------------------------------------------
+     CONTENT OFFSET
+     The header switches to position: fixed at this
+     breakpoint, so it no longer reserves space in normal
+     flow. Push page content down by the header's height
+     to prevent it being hidden underneath the header.
+     ------------------------------------------------------- */
+
+  #main {
+
+    padding-top: 64px;
+  }
+
+
+  /* -------------------------------------------------------
      MOBILE NAV
      ------------------------------------------------------- */
 
@@ -1182,6 +1196,14 @@ body {
     padding-right: 14px;
 
     box-sizing: border-box;
+  }
+
+
+  /* Header is shorter at this breakpoint — match content offset */
+
+  #main {
+
+    padding-top: 60px;
   }
 
 
