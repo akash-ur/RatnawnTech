@@ -354,8 +354,8 @@
 /* ---------- Responsive ---------- */
 @media (max-width: 980px) {
   .product-block { grid-template-columns: 1fr; }
-  .product-block-reverse .product-copy { order: 1; }
-  .product-block-reverse .product-visual { order: 2; }
+  .product-block-reverse .product-copy { order: 2; }
+  .product-block-reverse .product-visual { order: 1; }
   .two-col-list { grid-template-columns: 1fr; gap: 16px; }
 }
 @media (max-width: 600px) {

@@ -2,11 +2,13 @@
    header.js
    RatNawn Tech — Header interactions
 
-   - Scroll-based floating navbar animation
+   - Scroll-based floating navbar
    - Mobile hamburger menu
+   - Mobile accordion navigation
    - Desktop dropdown support
    - Dark / Light mode
    - Theme preference saved in localStorage
+   - Accessibility support
    ========================================================= */
 
 
@@ -16,9 +18,9 @@
 
 function initHeader() {
 
-  const header = document.querySelector('.site-header');
-  const menuBtn = document.getElementById('menu-btn');
-  const mobileNav = document.getElementById('mobile-nav');
+  const header = document.querySelector(".site-header");
+  const menuBtn = document.getElementById("menu-btn");
+  const mobileNav = document.getElementById("mobile-nav");
 
 
   /* =======================================================
@@ -27,21 +29,22 @@ function initHeader() {
 
   if (header && !header.dataset.scrollBound) {
 
-    header.dataset.scrollBound = 'true';
+    header.dataset.scrollBound = "true";
 
     let ticking = false;
 
     function updateHeader() {
 
-      const scrollY = window.scrollY;
+      const scrollY =
+        window.scrollY || window.pageYOffset || 0;
 
       if (scrollY > 45) {
 
-        header.classList.add('is-scrolled');
+        header.classList.add("is-scrolled");
 
       } else {
 
-        header.classList.remove('is-scrolled');
+        header.classList.remove("is-scrolled");
 
       }
 
@@ -50,15 +53,16 @@ function initHeader() {
 
 
     window.addEventListener(
-      'scroll',
+      "scroll",
       () => {
 
         if (!ticking) {
 
-          window.requestAnimationFrame(updateHeader);
+          window.requestAnimationFrame(
+            updateHeader
+          );
 
           ticking = true;
-
         }
 
       },
@@ -67,7 +71,6 @@ function initHeader() {
 
 
     /* Initial state */
-
     updateHeader();
 
   }
@@ -83,67 +86,375 @@ function initHeader() {
     !menuBtn.dataset.bound
   ) {
 
-    menuBtn.dataset.bound = 'true';
+    menuBtn.dataset.bound = "true";
 
 
-    menuBtn.addEventListener('click', () => {
+    /* =====================================================
+       OPEN MOBILE MENU
+       ===================================================== */
 
-      const isOpen =
-        mobileNav.classList.toggle('open');
+    function openMobileMenu() {
 
+      mobileNav.classList.add("open");
 
       menuBtn.setAttribute(
-        'aria-expanded',
-        String(isOpen)
+        "aria-expanded",
+        "true"
       );
 
-
-      document.body.classList.toggle(
-        'mobile-menu-open',
-        isOpen
+      menuBtn.setAttribute(
+        "aria-label",
+        "Close menu"
       );
 
-    });
+      menuBtn.setAttribute(
+        "title",
+        "Close menu"
+      );
+
+      document.body.classList.add(
+        "mobile-menu-open"
+      );
+
+    }
 
 
-    /* Close mobile menu when link is clicked */
+    /* =====================================================
+       CLOSE MOBILE MENU
+       ===================================================== */
+
+    function closeMobileMenu() {
+
+      mobileNav.classList.remove("open");
+
+      menuBtn.setAttribute(
+        "aria-expanded",
+        "false"
+      );
+
+      menuBtn.setAttribute(
+        "aria-label",
+        "Open menu"
+      );
+
+      menuBtn.setAttribute(
+        "title",
+        "Open menu"
+      );
+
+      document.body.classList.remove(
+        "mobile-menu-open"
+      );
+
+    }
+
+
+    /* =====================================================
+       TOGGLE MOBILE MENU
+       ===================================================== */
+
+    function toggleMobileMenu() {
+
+      const isOpen =
+        mobileNav.classList.contains("open");
+
+
+      if (isOpen) {
+
+        closeMobileMenu();
+
+      } else {
+
+        openMobileMenu();
+
+      }
+
+    }
+
+
+    /* Hamburger click */
+
+    menuBtn.addEventListener(
+      "click",
+      toggleMobileMenu
+    );
+
+
+    /* =====================================================
+       4. MOBILE NAVIGATION GROUPS
+       ===================================================== */
 
     mobileNav
-      .querySelectorAll('a')
-      .forEach((link) => {
+      .querySelectorAll(".mobile-group")
+      .forEach((group) => {
 
-        link.addEventListener('click', () => {
+        const groupTitle =
+          group.querySelector(":scope > span");
 
-          mobileNav.classList.remove('open');
+        const submenu =
+          group.querySelector(":scope > ul");
 
 
-          menuBtn.setAttribute(
-            'aria-expanded',
-            'false'
+        if (
+          !groupTitle ||
+          !submenu
+        ) {
+
+          return;
+
+        }
+
+
+        /* -------------------------------------------------
+           ACCESSIBILITY
+           ------------------------------------------------- */
+
+        groupTitle.setAttribute(
+          "role",
+          "button"
+        );
+
+        groupTitle.setAttribute(
+          "tabindex",
+          "0"
+        );
+
+        groupTitle.setAttribute(
+          "aria-expanded",
+          "false"
+        );
+
+
+        /* -------------------------------------------------
+           IMPORTANT:
+           ALL SUBMENUS START CLOSED
+           ------------------------------------------------- */
+
+        submenu.hidden = true;
+
+        group.classList.remove(
+          "is-open"
+        );
+
+
+        /* -------------------------------------------------
+           TOGGLE GROUP
+           ------------------------------------------------- */
+
+        function toggleGroup() {
+
+          const isOpen =
+            groupTitle.getAttribute(
+              "aria-expanded"
+            ) === "true";
+
+
+          /* -----------------------------------------------
+             CLOSE ALL OTHER GROUPS
+             ----------------------------------------------- */
+
+          mobileNav
+            .querySelectorAll(".mobile-group")
+            .forEach((otherGroup) => {
+
+              if (
+                otherGroup === group
+              ) {
+
+                return;
+
+              }
+
+
+              const otherTitle =
+                otherGroup.querySelector(
+                  ":scope > span"
+                );
+
+              const otherSubmenu =
+                otherGroup.querySelector(
+                  ":scope > ul"
+                );
+
+
+              if (
+                otherTitle &&
+                otherSubmenu
+              ) {
+
+                otherTitle.setAttribute(
+                  "aria-expanded",
+                  "false"
+                );
+
+                otherSubmenu.hidden = true;
+
+                otherGroup.classList.remove(
+                  "is-open"
+                );
+
+              }
+
+            });
+
+
+          /* -----------------------------------------------
+             OPEN / CLOSE CURRENT GROUP
+             ----------------------------------------------- */
+
+          const shouldOpen =
+            !isOpen;
+
+
+          groupTitle.setAttribute(
+            "aria-expanded",
+            String(shouldOpen)
           );
 
 
-          document.body.classList.remove(
-            'mobile-menu-open'
+          submenu.hidden =
+            !shouldOpen;
+
+
+          group.classList.toggle(
+            "is-open",
+            shouldOpen
           );
 
-        });
+        }
+
+
+        /* -------------------------------------------------
+           CLICK
+           ------------------------------------------------- */
+
+        groupTitle.addEventListener(
+          "click",
+          (event) => {
+
+            event.preventDefault();
+
+            toggleGroup();
+
+          }
+        );
+
+
+        /* -------------------------------------------------
+           KEYBOARD ACCESSIBILITY
+           ------------------------------------------------- */
+
+        groupTitle.addEventListener(
+          "keydown",
+          (event) => {
+
+            if (
+              event.key === "Enter" ||
+              event.key === " "
+            ) {
+
+              event.preventDefault();
+
+              toggleGroup();
+
+            }
+
+          }
+        );
 
       });
+
+
+    /* =====================================================
+       5. CLOSE MOBILE MENU WHEN LINK IS CLICKED
+       ===================================================== */
+
+    mobileNav
+      .querySelectorAll("a")
+      .forEach((link) => {
+
+        link.addEventListener(
+          "click",
+          () => {
+
+            closeMobileMenu();
+
+          }
+        );
+
+      });
+
+
+    /* =====================================================
+       6. RESET MOBILE MENU WHEN GOING TO DESKTOP
+       ===================================================== */
+
+    window.addEventListener(
+      "resize",
+      () => {
+
+        if (
+          window.innerWidth > 980
+        ) {
+
+          closeMobileMenu();
+
+
+          /* Reset all mobile groups */
+
+          mobileNav
+            .querySelectorAll(".mobile-group")
+            .forEach((group) => {
+
+              const title =
+                group.querySelector(
+                  ":scope > span"
+                );
+
+              const submenu =
+                group.querySelector(
+                  ":scope > ul"
+                );
+
+
+              if (
+                title &&
+                submenu
+              ) {
+
+                title.setAttribute(
+                  "aria-expanded",
+                  "false"
+                );
+
+                submenu.hidden = true;
+
+                group.classList.remove(
+                  "is-open"
+                );
+
+              }
+
+            });
+
+        }
+
+      }
+    );
 
   }
 
 
   /* =======================================================
-     4. DESKTOP DROPDOWN
+     7. DESKTOP DROPDOWNS
      ======================================================= */
 
   document
-    .querySelectorAll('.has-dropdown')
+    .querySelectorAll(".has-dropdown")
     .forEach((item) => {
 
       const toggle =
-        item.querySelector('.nav-toggle');
+        item.querySelector(".nav-toggle");
 
 
       if (
@@ -156,27 +467,30 @@ function initHeader() {
       }
 
 
-      toggle.dataset.bound = 'true';
+      toggle.dataset.bound = "true";
 
 
       toggle.addEventListener(
-        'click',
+        "click",
         (event) => {
 
           event.preventDefault();
+
           event.stopPropagation();
 
 
           const expanded =
             toggle.getAttribute(
-              'aria-expanded'
-            ) === 'true';
+              "aria-expanded"
+            ) === "true";
 
 
-          /* Close all other dropdowns */
+          /* -----------------------------------------------
+             CLOSE OTHER DROPDOWNS
+             ----------------------------------------------- */
 
           document
-            .querySelectorAll('.nav-toggle')
+            .querySelectorAll(".nav-toggle")
             .forEach((otherToggle) => {
 
               if (
@@ -184,33 +498,47 @@ function initHeader() {
               ) {
 
                 otherToggle.setAttribute(
-                  'aria-expanded',
-                  'false'
+                  "aria-expanded",
+                  "false"
                 );
 
 
-                otherToggle
-                  .closest('.has-dropdown')
-                  ?.classList.remove(
-                    'dropdown-open'
+                const otherItem =
+                  otherToggle.closest(
+                    ".has-dropdown"
                   );
+
+
+                if (otherItem) {
+
+                  otherItem.classList.remove(
+                    "dropdown-open"
+                  );
+
+                }
 
               }
 
             });
 
 
-          /* Toggle current dropdown */
+          /* -----------------------------------------------
+             CURRENT DROPDOWN
+             ----------------------------------------------- */
+
+          const shouldOpen =
+            !expanded;
+
 
           toggle.setAttribute(
-            'aria-expanded',
-            String(!expanded)
+            "aria-expanded",
+            String(shouldOpen)
           );
 
 
           item.classList.toggle(
-            'dropdown-open',
-            !expanded
+            "dropdown-open",
+            shouldOpen
           );
 
         }
@@ -220,7 +548,7 @@ function initHeader() {
 
 
   /* =======================================================
-     5. CLOSE DROPDOWN OUTSIDE
+     8. CLOSE DESKTOP DROPDOWN OUTSIDE
      ======================================================= */
 
   if (
@@ -228,37 +556,37 @@ function initHeader() {
   ) {
 
     document.body.dataset.dropdownOutsideClickBound =
-      'true';
+      "true";
 
 
     document.addEventListener(
-      'click',
+      "click",
       (event) => {
 
         if (
           !event.target.closest(
-            '.has-dropdown'
+            ".has-dropdown"
           )
         ) {
 
           document
-            .querySelectorAll('.nav-toggle')
+            .querySelectorAll(".nav-toggle")
             .forEach((toggle) => {
 
               toggle.setAttribute(
-                'aria-expanded',
-                'false'
+                "aria-expanded",
+                "false"
               );
 
             });
 
 
           document
-            .querySelectorAll('.has-dropdown')
+            .querySelectorAll(".has-dropdown")
             .forEach((item) => {
 
               item.classList.remove(
-                'dropdown-open'
+                "dropdown-open"
               );
 
             });
@@ -272,7 +600,7 @@ function initHeader() {
 
 
   /* =======================================================
-     6. ESC KEY
+     9. ESC KEY
      ======================================================= */
 
   if (
@@ -280,65 +608,94 @@ function initHeader() {
   ) {
 
     document.body.dataset.escapeBound =
-      'true';
+      "true";
 
 
     document.addEventListener(
-      'keydown',
+      "keydown",
       (event) => {
 
-        if (event.key !== 'Escape') {
+        if (
+          event.key !== "Escape"
+        ) {
 
           return;
 
         }
 
 
-        /* Close dropdowns */
+        /* -----------------------------------------------
+           CLOSE DESKTOP DROPDOWNS
+           ----------------------------------------------- */
 
         document
-          .querySelectorAll('.nav-toggle')
+          .querySelectorAll(".nav-toggle")
           .forEach((toggle) => {
 
             toggle.setAttribute(
-              'aria-expanded',
-              'false'
+              "aria-expanded",
+              "false"
             );
 
           });
 
 
         document
-          .querySelectorAll('.has-dropdown')
+          .querySelectorAll(".has-dropdown")
           .forEach((item) => {
 
             item.classList.remove(
-              'dropdown-open'
+              "dropdown-open"
             );
 
           });
 
 
-        /* Close mobile menu */
+        /* -----------------------------------------------
+           CLOSE MOBILE MENU
+           ----------------------------------------------- */
 
-        if (
-          mobileNav &&
-          menuBtn
-        ) {
+        const currentMenuBtn =
+          document.getElementById(
+            "menu-btn"
+          );
 
-          mobileNav.classList.remove(
-            'open'
+        const currentMobileNav =
+          document.getElementById(
+            "mobile-nav"
           );
 
 
-          menuBtn.setAttribute(
-            'aria-expanded',
-            'false'
+        if (
+          currentMenuBtn &&
+          currentMobileNav
+        ) {
+
+          currentMobileNav.classList.remove(
+            "open"
+          );
+
+
+          currentMenuBtn.setAttribute(
+            "aria-expanded",
+            "false"
+          );
+
+
+          currentMenuBtn.setAttribute(
+            "aria-label",
+            "Open menu"
+          );
+
+
+          currentMenuBtn.setAttribute(
+            "title",
+            "Open menu"
           );
 
 
           document.body.classList.remove(
-            'mobile-menu-open'
+            "mobile-menu-open"
           );
 
         }
@@ -350,7 +707,7 @@ function initHeader() {
 
 
   /* =======================================================
-     7. DARK / LIGHT MODE
+     10. DARK / LIGHT MODE
      ======================================================= */
 
   initTheme();
@@ -359,18 +716,16 @@ function initHeader() {
 
 
 /* =========================================================
-   8. THEME INITIALIZATION
+   11. THEME INITIALIZATION
    ========================================================= */
 
 function initTheme() {
 
   const themeToggle =
     document.getElementById(
-      'theme-toggle'
+      "theme-toggle"
     );
 
-
-  /* Button not loaded yet */
 
   if (!themeToggle) {
 
@@ -382,7 +737,7 @@ function initTheme() {
   /* Prevent duplicate initialization */
 
   if (
-    themeToggle.dataset.themeBound === 'true'
+    themeToggle.dataset.themeBound === "true"
   ) {
 
     return;
@@ -391,7 +746,7 @@ function initTheme() {
 
 
   themeToggle.dataset.themeBound =
-    'true';
+    "true";
 
 
   const html =
@@ -404,61 +759,61 @@ function initTheme() {
 
   const savedTheme =
     localStorage.getItem(
-      'ratnawn-theme'
+      "ratnawn-theme"
     );
 
 
   if (
-    savedTheme === 'light'
+    savedTheme === "light"
   ) {
 
     html.classList.add(
-      'light-mode'
+      "light-mode"
     );
 
   } else {
 
     html.classList.remove(
-      'light-mode'
+      "light-mode"
     );
 
   }
 
 
   /* =======================================================
-     UPDATE BUTTON
+     UPDATE THEME BUTTON
      ======================================================= */
 
   function updateThemeButton() {
 
     const isLight =
       html.classList.contains(
-        'light-mode'
+        "light-mode"
       );
 
 
     if (isLight) {
 
       themeToggle.setAttribute(
-        'aria-label',
-        'Switch to dark mode'
+        "aria-label",
+        "Switch to dark mode"
       );
 
       themeToggle.setAttribute(
-        'title',
-        'Switch to dark mode'
+        "title",
+        "Switch to dark mode"
       );
 
     } else {
 
       themeToggle.setAttribute(
-        'aria-label',
-        'Switch to light mode'
+        "aria-label",
+        "Switch to light mode"
       );
 
       themeToggle.setAttribute(
-        'title',
-        'Switch to light mode'
+        "title",
+        "Switch to light mode"
       );
 
     }
@@ -466,7 +821,7 @@ function initTheme() {
   }
 
 
-  /* Initial button state */
+  /* Initial state */
 
   updateThemeButton();
 
@@ -476,22 +831,22 @@ function initTheme() {
      ======================================================= */
 
   themeToggle.addEventListener(
-    'click',
+    "click",
     () => {
 
       const isLight =
         html.classList.toggle(
-          'light-mode'
+          "light-mode"
         );
 
 
       /* Save selected theme */
 
       localStorage.setItem(
-        'ratnawn-theme',
+        "ratnawn-theme",
         isLight
-          ? 'light'
-          : 'dark'
+          ? "light"
+          : "dark"
       );
 
 
@@ -506,10 +861,10 @@ function initTheme() {
 
 
 /* =========================================================
-   9. DOM READY
+   12. DOM READY
    ========================================================= */
 
 document.addEventListener(
-  'DOMContentLoaded',
+  "DOMContentLoaded",
   initHeader
 );
