@@ -1,29 +1,42 @@
 /* =========================================================
-   header.css
-   RatNawn Tech — Premium Floating AI Navbar
-   ---------------------------------------------------------
-   • Full-width navbar at top
-   • Floating compact navbar on scroll
-   • Scroll state sits below viewport top
-   • Smooth glass effect
-   • Responsive desktop / tablet / mobile
-   • Animated dropdowns
-   • Animated mobile menu
-   • Dark / Light mode toggle
-   • Mobile desktop-nav conflict fixed
+   HEADER.CSS
+   RatNawn Tech — Premium AI Navbar
+   DESKTOP + MOBILE FULL WIDTH FIX
    ========================================================= */
 
 
 /* =========================================================
-   1. ROOT HEADER — TOP STATE
+   1. GLOBAL SAFETY
+   ========================================================= */
+
+html,
+body {
+  width: 100%;
+  max-width: 100%;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  overflow-x: hidden;
+}
+
+
+/* =========================================================
+   2. ROOT HEADER
    ========================================================= */
 
 .site-header {
   position: sticky;
   top: 0;
+  left: 0;
+
   z-index: 1000;
 
   width: 100%;
+  max-width: 100%;
+
+  margin: 0;
 
   background: rgba(7, 11, 18, 0.86);
 
@@ -44,7 +57,7 @@
 
 
 /* =========================================================
-   2. HEADER INNER
+   3. HEADER INNER
    ========================================================= */
 
 .header-inner {
@@ -64,7 +77,7 @@
 
 
 /* =========================================================
-   3. BRAND
+   4. BRAND
    ========================================================= */
 
 .brand {
@@ -147,7 +160,7 @@
 
 
 /* =========================================================
-   4. DESKTOP NAV
+   5. DESKTOP NAV
    ========================================================= */
 
 .main-nav {
@@ -156,11 +169,13 @@
   min-width: 0;
 
   display: flex;
+
   justify-content: center;
 }
 
 .main-nav > ul {
   display: flex;
+
   align-items: center;
   justify-content: center;
 
@@ -182,7 +197,7 @@
 
 
 /* =========================================================
-   5. NAV LINKS
+   6. NAV LINKS
    ========================================================= */
 
 .main-nav > ul > li > a,
@@ -199,6 +214,7 @@
   padding: 9px 12px;
 
   border: 0;
+
   border-radius: 9px;
 
   background: transparent;
@@ -208,6 +224,7 @@
   font-family: var(--font-body);
 
   font-size: 0.86rem;
+
   font-weight: 500;
 
   line-height: 1;
@@ -228,14 +245,15 @@
 .main-nav .nav-toggle:hover {
   color: var(--text);
 
-  background: rgba(255, 255, 255, 0.055);
+  background:
+    rgba(255, 255, 255, 0.055);
 
   transform: translateY(-1px);
 }
 
 
 /* =========================================================
-   6. NAV UNDERLINE
+   7. NAV UNDERLINE
    ========================================================= */
 
 .main-nav > ul > li > a::before,
@@ -266,7 +284,7 @@
 
 
 /* =========================================================
-   7. DROPDOWN ARROW
+   8. DROPDOWN ARROW
    ========================================================= */
 
 .main-nav .nav-toggle::after {
@@ -303,7 +321,7 @@
 
 
 /* =========================================================
-   8. DROPDOWN
+   9. DESKTOP DROPDOWN
    ========================================================= */
 
 .has-dropdown .dropdown {
@@ -327,7 +345,8 @@
       rgba(9, 13, 21, 0.98)
     );
 
-  border: 1px solid rgba(255, 255, 255, 0.09);
+  border:
+    1px solid rgba(255, 255, 255, 0.09);
 
   border-radius: 14px;
 
@@ -336,6 +355,7 @@
     0 8px 25px rgba(0, 0, 0, 0.18);
 
   opacity: 0;
+
   visibility: hidden;
 
   transform:
@@ -352,11 +372,6 @@
     visibility 0.22s ease;
 }
 
-
-/* =========================================================
-   9. DROPDOWN CONNECTOR
-   ========================================================= */
-
 .has-dropdown .dropdown::before {
   content: "";
 
@@ -368,20 +383,18 @@
   width: 9px;
   height: 9px;
 
-  background: #18222F;
+  background: #18222f;
 
-  border-left: 1px solid rgba(255, 255, 255, 0.09);
-  border-top: 1px solid rgba(255, 255, 255, 0.09);
+  border-left:
+    1px solid rgba(255, 255, 255, 0.09);
+
+  border-top:
+    1px solid rgba(255, 255, 255, 0.09);
 
   transform:
     translateX(-50%)
     rotate(45deg);
 }
-
-
-/* =========================================================
-   10. SHOW DROPDOWN
-   ========================================================= */
 
 .has-dropdown:hover .dropdown,
 .has-dropdown:focus-within .dropdown,
@@ -399,7 +412,7 @@
 
 
 /* =========================================================
-   11. DROPDOWN LINKS
+   10. DROPDOWN LINKS
    ========================================================= */
 
 .dropdown li {
@@ -410,6 +423,7 @@
   position: relative;
 
   display: flex;
+
   align-items: center;
 
   min-height: 43px;
@@ -418,11 +432,13 @@
 
   border-radius: 9px;
 
-  color: rgba(255, 255, 255, 0.67);
+  color:
+    rgba(255, 255, 255, 0.67);
 
   font-family: var(--font-body);
 
   font-size: 0.85rem;
+
   font-weight: 500;
 
   line-height: 1.3;
@@ -478,11 +494,12 @@
 
 
 /* =========================================================
-   12. HEADER ACTIONS
+   11. HEADER ACTIONS
    ========================================================= */
 
 .header-actions {
   display: flex;
+
   align-items: center;
 
   gap: 10px;
@@ -496,7 +513,7 @@
 
 
 /* =========================================================
-   13. CTA BUTTON
+   12. PRIMARY CTA
    ========================================================= */
 
 .header-actions .btn-primary {
@@ -531,7 +548,7 @@
 
 
 /* =========================================================
-   14. FLOATING NAVBAR — SCROLL STATE
+   13. FLOATING NAVBAR — DESKTOP
    ========================================================= */
 
 .site-header.is-scrolled {
@@ -564,7 +581,7 @@
 
 
 /* =========================================================
-   15. FLOATING INNER
+   14. FLOATING INNER
    ========================================================= */
 
 .site-header.is-scrolled .header-inner {
@@ -575,11 +592,13 @@
 
   padding-left: 20px;
   padding-right: 20px;
+
+  box-sizing: border-box;
 }
 
 
 /* =========================================================
-   16. SCROLLED BRAND
+   15. SCROLLED BRAND
    ========================================================= */
 
 .site-header.is-scrolled .brand {
@@ -588,18 +607,15 @@
 
 
 /* =========================================================
-   17. SCROLLED NAV
+   16. SCROLLED NAV
    ========================================================= */
 
 .site-header.is-scrolled .main-nav > ul {
   gap: 2px;
 }
 
-.site-header.is-scrolled
-.main-nav > ul > li > a,
-
-.site-header.is-scrolled
-.main-nav .nav-toggle {
+.site-header.is-scrolled .main-nav > ul > li > a,
+.site-header.is-scrolled .main-nav .nav-toggle {
   min-height: 38px;
 
   padding-left: 10px;
@@ -610,11 +626,10 @@
 
 
 /* =========================================================
-   18. SCROLLED CTA
+   17. SCROLLED CTA
    ========================================================= */
 
-.site-header.is-scrolled
-.header-actions .btn-primary {
+.site-header.is-scrolled .header-actions .btn-primary {
   min-height: 38px;
 
   padding-left: 14px;
@@ -627,19 +642,7 @@
 
 
 /* =========================================================
-   19. SCROLLED DROPDOWN
-   ========================================================= */
-
-.site-header.is-scrolled
-.has-dropdown .dropdown {
-  top: calc(100% + 9px);
-
-  border-radius: 14px;
-}
-
-
-/* =========================================================
-   20. MOBILE MENU BUTTON
+   18. MOBILE MENU BUTTON
    ========================================================= */
 
 .menu-btn {
@@ -651,6 +654,7 @@
   padding: 0;
 
   flex-direction: column;
+
   align-items: center;
   justify-content: center;
 
@@ -665,6 +669,8 @@
   border-radius: 9px;
 
   cursor: pointer;
+
+  flex-shrink: 0;
 
   transition:
     background 0.25s ease,
@@ -699,23 +705,20 @@
 
 
 /* =========================================================
-   21. HAMBURGER → X
+   19. HAMBURGER → X
    ========================================================= */
 
-.menu-btn[aria-expanded="true"]
-span:nth-child(1) {
+.menu-btn[aria-expanded="true"] span:nth-child(1) {
   transform:
     translateY(6.5px)
     rotate(45deg);
 }
 
-.menu-btn[aria-expanded="true"]
-span:nth-child(2) {
+.menu-btn[aria-expanded="true"] span:nth-child(2) {
   opacity: 0;
 }
 
-.menu-btn[aria-expanded="true"]
-span:nth-child(3) {
+.menu-btn[aria-expanded="true"] span:nth-child(3) {
   transform:
     translateY(-6.5px)
     rotate(-45deg);
@@ -723,7 +726,7 @@ span:nth-child(3) {
 
 
 /* =========================================================
-   22. MOBILE NAV
+   20. MOBILE NAV
    ========================================================= */
 
 .mobile-nav {
@@ -759,8 +762,7 @@ span:nth-child(3) {
 }
 
 .mobile-nav nav {
-  padding:
-    18px 24px 28px;
+  padding: 18px 24px 28px;
 }
 
 .mobile-nav > nav > ul {
@@ -807,7 +809,7 @@ span:nth-child(3) {
 
 
 /* =========================================================
-   23. MOBILE GROUP
+   21. MOBILE GROUP
    ========================================================= */
 
 .mobile-group > span {
@@ -879,7 +881,7 @@ span:nth-child(3) {
 
 
 /* =========================================================
-   24. MOBILE CTA
+   22. MOBILE CTA
    ========================================================= */
 
 .mobile-nav .btn-block {
@@ -894,14 +896,13 @@ span:nth-child(3) {
 
 
 /* =========================================================
-   25. LAPTOP
+   23. LAPTOP
    ========================================================= */
 
 @media (max-width: 1280px) {
 
   .header-inner {
-    width:
-      calc(100% - 36px);
+    width: calc(100% - 36px);
 
     gap: 16px;
   }
@@ -926,8 +927,7 @@ span:nth-child(3) {
   }
 
   .site-header.is-scrolled {
-    width:
-      calc(100% - 40px);
+    width: calc(100% - 40px);
 
     top: 20px;
 
@@ -942,14 +942,13 @@ span:nth-child(3) {
 
 
 /* =========================================================
-   26. SMALL LAPTOP
+   24. SMALL LAPTOP
    ========================================================= */
 
 @media (max-width: 1120px) {
 
   .header-inner {
-    width:
-      calc(100% - 28px);
+    width: calc(100% - 28px);
 
     gap: 10px;
   }
@@ -974,8 +973,7 @@ span:nth-child(3) {
   }
 
   .site-header.is-scrolled {
-    width:
-      calc(100% - 34px);
+    width: calc(100% - 34px);
 
     top: 18px;
   }
@@ -983,58 +981,88 @@ span:nth-child(3) {
 
 
 /* =========================================================
-   27. TABLET / MOBILE
+   25. TABLET / MOBILE
    ========================================================= */
 
 @media (max-width: 980px) {
 
-  /* -----------------------------------------
-     MOBILE HEADER
-     ----------------------------------------- */
-
-  .site-header {
-    width: 100% !important;
-
-    left: 0;
-    right: 0;
+  html,
+  body {
+    width: 100%;
+    min-width: 0;
+    max-width: 100%;
 
     margin: 0;
+    padding: 0;
 
-    border-radius: 0;
+    overflow-x: hidden;
   }
 
 
-  /* -----------------------------------------
-     MOBILE INNER
-     ----------------------------------------- */
+  /* -------------------------------------------------------
+     FULL SCREEN HEADER
+     ------------------------------------------------------- */
 
-  .site-header .header-inner {
+  .site-header,
+  .site-header.is-scrolled {
+
+    position: fixed !important;
+
+    top: 0 !important;
+    left: 0 !important;
+    right: auto !important;
+
+    width: 100vw !important;
+    max-width: 100vw !important;
+    min-width: 100vw !important;
+
+    margin: 0 !important;
+
+    transform: none !important;
+
+    border-radius: 0 !important;
+
+    border-left: 0 !important;
+    border-right: 0 !important;
+
+    box-sizing: border-box;
+
+    z-index: 1000;
+  }
+
+
+  /* -------------------------------------------------------
+     HEADER INNER FULL WIDTH
+     ------------------------------------------------------- */
+
+  .site-header .header-inner,
+  .site-header.is-scrolled .header-inner {
+
     width: 100% !important;
+    max-width: none !important;
 
-    max-width: none;
+    min-width: 0;
 
-    min-height: 70px;
+    min-height: 64px;
+    height: 64px;
 
-    margin: 0;
+    margin: 0 !important;
 
     padding-left: 16px;
     padding-right: 16px;
 
     box-sizing: border-box;
 
-    gap: 12px;
+    gap: 10px;
   }
 
 
-  /* -----------------------------------------
-     CRITICAL MOBILE FIX
-     Desktop nav MUST stay hidden.
+  /* -------------------------------------------------------
+     HIDE DESKTOP NAV
+     ------------------------------------------------------- */
 
-     !important prevents JavaScript / inline
-     display:flex from showing desktop nav.
-     ----------------------------------------- */
+  .main-nav {
 
-  .site-header .main-nav {
     display: none !important;
 
     visibility: hidden !important;
@@ -1043,11 +1071,22 @@ span:nth-child(3) {
   }
 
 
-  /* -----------------------------------------
-     HEADER ACTIONS
-     ----------------------------------------- */
+  /* -------------------------------------------------------
+     HIDE DESKTOP CTA
+     ------------------------------------------------------- */
 
-  .site-header .header-actions {
+  .header-actions .btn-primary {
+
+    display: none !important;
+  }
+
+
+  /* -------------------------------------------------------
+     ACTIONS
+     ------------------------------------------------------- */
+
+  .header-actions {
+
     margin-left: auto;
 
     display: flex;
@@ -1060,181 +1099,175 @@ span:nth-child(3) {
   }
 
 
-  /* -----------------------------------------
-     DESKTOP CTA HIDDEN
-     ----------------------------------------- */
+  /* -------------------------------------------------------
+     HAMBURGER
+     ------------------------------------------------------- */
 
-  .site-header .header-actions .btn-primary {
-    display: none !important;
-  }
+  .menu-btn {
 
-
-  /* -----------------------------------------
-     MOBILE MENU BUTTON
-     ----------------------------------------- */
-
-  .site-header .menu-btn {
     display: flex !important;
 
     flex-shrink: 0;
   }
 
 
-  /* -----------------------------------------
+  /* -------------------------------------------------------
      MOBILE NAV
-     ----------------------------------------- */
+     ------------------------------------------------------- */
 
-  .site-header .mobile-nav {
+  .mobile-nav {
+
     display: block;
 
-    width: 100% !important;
+    width: 100vw !important;
 
-    max-width: none;
-
-    box-sizing: border-box;
-  }
-
-  .site-header .mobile-nav nav {
-    width: 100%;
-
-    box-sizing: border-box;
-  }
-
-
-  /* -----------------------------------------
-     FLOATING MOBILE HEADER
-     ----------------------------------------- */
-
-  .site-header.is-scrolled {
-    position: fixed;
-
-    top: 16px;
-    left: 50%;
-
-    right: auto;
-
-    width:
-      calc(100% - 28px) !important;
-
-    max-width: none;
+    max-width: 100vw !important;
 
     margin: 0;
 
-    transform:
-      translateX(-50%);
-
-    border-radius: 16px;
+    box-sizing: border-box;
   }
 
-  .site-header.is-scrolled .header-inner {
-    width: 100% !important;
 
-    min-height: 62px;
-    height: 62px;
+  /* -------------------------------------------------------
+     DESKTOP DROPDOWN OFF
+     ------------------------------------------------------- */
 
-    padding-left: 16px;
-    padding-right: 16px;
+  .site-header .has-dropdown .dropdown {
+
+    display: none !important;
+
+    visibility: hidden !important;
+
+    opacity: 0 !important;
+
+    pointer-events: none !important;
   }
 }
 
 
 /* =========================================================
-   28. MOBILE
+   26. MOBILE
    ========================================================= */
 
 @media (max-width: 600px) {
 
-  /* -----------------------------------------
-     FULL WIDTH NORMAL MOBILE HEADER
-     ----------------------------------------- */
+  .site-header,
+  .site-header.is-scrolled {
 
-  .site-header {
-    width: 100% !important;
+    top: 0 !important;
+    left: 0 !important;
+
+    width: 100vw !important;
+    max-width: 100vw !important;
+    min-width: 100vw !important;
+
+    margin: 0 !important;
+
+    border-radius: 0 !important;
+
+    transform: none !important;
   }
 
-  .site-header .header-inner {
+
+  .site-header .header-inner,
+  .site-header.is-scrolled .header-inner {
+
     width: 100% !important;
 
-    min-height: 64px;
+    min-height: 60px;
+    height: 60px;
 
-    padding-left: 12px;
-    padding-right: 12px;
+    padding-left: 14px;
+    padding-right: 14px;
 
-    gap: 8px;
+    box-sizing: border-box;
   }
 
 
-  /* -----------------------------------------
+  /* -------------------------------------------------------
      BRAND
-     ----------------------------------------- */
+     ------------------------------------------------------- */
 
   .brand {
-    gap: 8px;
 
     min-width: 0;
+
+    gap: 8px;
   }
 
   .brand-mark {
+
     width: 27px;
     height: 27px;
   }
 
   .brand-mark svg {
+
     width: 26px;
     height: 26px;
   }
 
   .brand-name {
+
     font-size: 1rem;
   }
 
 
-  /* -----------------------------------------
+  /* -------------------------------------------------------
      ACTIONS
-     ----------------------------------------- */
+     ------------------------------------------------------- */
 
   .header-actions {
-    gap: 7px !important;
+
+    margin-left: auto;
+
+    gap: 7px;
   }
 
 
-  /* -----------------------------------------
-     MENU BUTTON
-     ----------------------------------------- */
+  /* -------------------------------------------------------
+     THEME
+     ------------------------------------------------------- */
+
+  .theme-toggle {
+
+    width: 40px;
+    height: 40px;
+  }
+
+  .theme-icon {
+
+    font-size: 22px;
+  }
+
+
+  /* -------------------------------------------------------
+     MENU
+     ------------------------------------------------------- */
 
   .menu-btn {
+
     width: 40px;
     height: 40px;
   }
 
 
-  /* -----------------------------------------
-     FLOATING MOBILE
-     ----------------------------------------- */
+  /* -------------------------------------------------------
+     MOBILE NAV
+     ------------------------------------------------------- */
 
-  .site-header.is-scrolled {
-    top: 10px;
+  .mobile-nav {
 
-    width:
-      calc(100% - 18px) !important;
+    width: 100vw !important;
 
-    border-radius: 14px;
+    max-width: 100vw !important;
+
+    box-sizing: border-box;
   }
 
-  .site-header.is-scrolled .header-inner {
-    min-height: 58px;
-    height: 58px;
+  .mobile-nav nav {
 
-    padding-left: 12px;
-    padding-right: 12px;
-  }
-
-
-  /* -----------------------------------------
-     MOBILE MENU
-     ----------------------------------------- */
-
-  .site-header .mobile-nav nav {
     padding-left: 18px;
     padding-right: 18px;
   }
@@ -1242,98 +1275,69 @@ span:nth-child(3) {
 
 
 /* =========================================================
-   29. VERY SMALL PHONES
+   27. VERY SMALL PHONES
    ========================================================= */
 
 @media (max-width: 380px) {
 
-  .site-header .header-inner {
-    width: 100% !important;
+  .site-header,
+  .site-header.is-scrolled {
 
-    padding-left: 10px;
-    padding-right: 10px;
+    width: 100vw !important;
+    min-width: 100vw !important;
+    max-width: 100vw !important;
+
+    left: 0 !important;
+    top: 0 !important;
+
+    border-radius: 0 !important;
   }
 
+
+  .site-header .header-inner,
+  .site-header.is-scrolled .header-inner {
+
+    width: 100% !important;
+
+    padding-left: 12px;
+    padding-right: 12px;
+  }
+
+
   .brand-name {
+
     font-size: 0.94rem;
   }
 
+
   .brand-mark {
+
     width: 25px;
     height: 25px;
   }
 
+
   .brand-mark svg {
+
     width: 24px;
     height: 24px;
   }
-
-  .site-header.is-scrolled {
-    width:
-      calc(100% - 14px) !important;
-
-    top: 8px;
-  }
-
-  .site-header.is-scrolled .header-inner {
-    padding-left: 10px;
-    padding-right: 10px;
-  }
 }
 
 
 /* =========================================================
-   30. KEYBOARD ACCESSIBILITY
-   ========================================================= */
-
-.main-nav a:focus-visible,
-.main-nav button:focus-visible,
-.mobile-nav a:focus-visible,
-.menu-btn:focus-visible,
-.brand:focus-visible,
-.theme-toggle:focus-visible {
-  outline:
-    2px solid var(--accent);
-
-  outline-offset: 3px;
-}
-
-
-/* =========================================================
-   31. REDUCED MOTION
-   ========================================================= */
-
-@media (prefers-reduced-motion: reduce) {
-
-  .site-header,
-  .header-inner,
-  .brand,
-  .brand-mark,
-  .main-nav a,
-  .main-nav button,
-  .dropdown,
-  .dropdown a,
-  .menu-btn,
-  .menu-btn span,
-  .mobile-nav,
-  .theme-toggle,
-  .theme-icon {
-    transition: none !important;
-  }
-}
-
-
-/* =========================================================
-   32. DARK / LIGHT MODE TOGGLE
+   28. THEME TOGGLE
    ========================================================= */
 
 .theme-toggle {
+
   position: relative;
 
   width: 44px;
   height: 44px;
 
   display: inline-flex;
+
   align-items: center;
   justify-content: center;
 
@@ -1363,20 +1367,22 @@ span:nth-child(3) {
 }
 
 .theme-toggle:hover {
+
   background:
     rgba(255, 255, 255, 0.07);
 
   border-color:
     rgba(53, 207, 255, 0.35);
 
-  transform:
-    translateY(-1px);
+  transform: translateY(-1px);
 }
 
 .theme-icon {
+
   position: absolute;
 
   display: flex;
+
   align-items: center;
   justify-content: center;
 
@@ -1392,12 +1398,8 @@ span:nth-child(3) {
     transform 0.35s ease;
 }
 
-
-/* =========================================================
-   33. DARK MODE
-   ========================================================= */
-
 .theme-moon {
+
   opacity: 1;
 
   transform:
@@ -1406,6 +1408,7 @@ span:nth-child(3) {
 }
 
 .theme-sun {
+
   opacity: 0;
 
   transform:
@@ -1415,10 +1418,22 @@ span:nth-child(3) {
 
 
 /* =========================================================
-   34. LIGHT MODE ROOT
+   29. SCROLLED THEME
+   ========================================================= */
+
+.site-header.is-scrolled .theme-toggle {
+
+  width: 42px;
+  height: 42px;
+}
+
+
+/* =========================================================
+   30. LIGHT MODE
    ========================================================= */
 
 html.light-mode {
+
   --text: #211f1b;
   --text-muted: #6f685e;
   --accent: #c58d27;
@@ -1426,23 +1441,15 @@ html.light-mode {
   color-scheme: light;
 }
 
-
-/* =========================================================
-   35. LIGHT MODE BODY
-   ========================================================= */
-
 html.light-mode body {
+
   background: #f5f2ec;
 
   color: #211f1b;
 }
 
-
-/* =========================================================
-   36. LIGHT MODE HEADER
-   ========================================================= */
-
 html.light-mode .site-header {
+
   background:
     rgba(255, 255, 255, 0.90);
 
@@ -1453,43 +1460,40 @@ html.light-mode .site-header {
     0 12px 35px rgba(0, 0, 0, 0.08);
 }
 
-
-/* =========================================================
-   37. LIGHT MODE NAV
-   ========================================================= */
-
 html.light-mode .main-nav > ul > li > a,
 html.light-mode .main-nav .nav-toggle {
+
   color:
     rgba(33, 31, 27, 0.70);
 }
 
 html.light-mode .main-nav > ul > li > a:hover,
 html.light-mode .main-nav .nav-toggle:hover {
-  color:
-    #211f1b;
+
+  color: #211f1b;
 
   background:
     rgba(0, 0, 0, 0.045);
 }
 
-
-/* =========================================================
-   38. LIGHT MODE TOGGLE
-   ========================================================= */
-
 html.light-mode .theme-toggle {
+
   background:
     rgba(0, 0, 0, 0.035);
 
   border-color:
     rgba(0, 0, 0, 0.12);
 
-  color:
-    #211f1b;
+  color: #211f1b;
 }
 
+
+/* =========================================================
+   31. LIGHT MODE ICON
+   ========================================================= */
+
 html.light-mode .theme-moon {
+
   opacity: 0;
 
   transform:
@@ -1498,6 +1502,7 @@ html.light-mode .theme-moon {
 }
 
 html.light-mode .theme-sun {
+
   opacity: 1;
 
   transform:
@@ -1507,10 +1512,11 @@ html.light-mode .theme-sun {
 
 
 /* =========================================================
-   39. LIGHT MODE DROPDOWN
+   32. LIGHT DROPDOWN
    ========================================================= */
 
 html.light-mode .has-dropdown .dropdown {
+
   background:
     linear-gradient(
       145deg,
@@ -1527,13 +1533,14 @@ html.light-mode .has-dropdown .dropdown {
 }
 
 html.light-mode .dropdown a {
+
   color:
     rgba(33, 31, 27, 0.70);
 }
 
 html.light-mode .dropdown a:hover {
-  color:
-    #211f1b;
+
+  color: #211f1b;
 
   background:
     linear-gradient(
@@ -1545,26 +1552,11 @@ html.light-mode .dropdown a:hover {
 
 
 /* =========================================================
-   40. LIGHT MODE DROPDOWN CONNECTOR
-   ========================================================= */
-
-html.light-mode .has-dropdown .dropdown::before {
-  background:
-    #ffffff;
-
-  border-left-color:
-    rgba(0, 0, 0, 0.10);
-
-  border-top-color:
-    rgba(0, 0, 0, 0.10);
-}
-
-
-/* =========================================================
-   41. LIGHT MODE MOBILE NAV
+   33. LIGHT MOBILE
    ========================================================= */
 
 html.light-mode .mobile-nav {
+
   background:
     linear-gradient(
       180deg,
@@ -1577,31 +1569,23 @@ html.light-mode .mobile-nav {
 }
 
 html.light-mode .mobile-nav > nav > ul > li {
+
   border-color:
     rgba(0, 0, 0, 0.07);
 }
 
 html.light-mode .mobile-nav > nav > ul > li > a {
-  color:
-    #211f1b;
+
+  color: #211f1b;
 }
-
-html.light-mode .mobile-nav > nav > ul > li > a:hover {
-  color:
-    #c58d27;
-}
-
-
-/* =========================================================
-   42. LIGHT MODE MOBILE GROUP
-   ========================================================= */
 
 html.light-mode .mobile-group > span {
-  color:
-    #6f685e;
+
+  color: #6f685e;
 }
 
 html.light-mode .mobile-group ul li a {
+
   color:
     rgba(33, 31, 27, 0.65);
 
@@ -1609,20 +1593,8 @@ html.light-mode .mobile-group ul li a {
     rgba(0, 0, 0, 0.10);
 }
 
-html.light-mode .mobile-group ul li a:hover {
-  color:
-    #211f1b;
-
-  border-left-color:
-    #c58d27;
-}
-
-
-/* =========================================================
-   43. LIGHT MODE MENU BUTTON
-   ========================================================= */
-
 html.light-mode .menu-btn {
+
   background:
     rgba(0, 0, 0, 0.025);
 
@@ -1630,158 +1602,361 @@ html.light-mode .menu-btn {
     rgba(0, 0, 0, 0.12);
 }
 
-html.light-mode .menu-btn:hover {
-  background:
-    rgba(0, 0, 0, 0.05);
-
-  border-color:
-    rgba(197, 141, 39, 0.35);
-}
-
 html.light-mode .menu-btn span {
+
   background:
     #211f1b;
 }
 
 
 /* =========================================================
-   44. SCROLLED THEME TOGGLE
+   34. ACCESSIBILITY
    ========================================================= */
 
-.site-header.is-scrolled .theme-toggle {
-  width: 42px;
-  height: 42px;
+.main-nav a:focus-visible,
+.main-nav button:focus-visible,
+.mobile-nav a:focus-visible,
+.menu-btn:focus-visible,
+.theme-toggle:focus-visible,
+.brand:focus-visible {
+
+  outline:
+    2px solid var(--accent);
+
+  outline-offset: 3px;
 }
 
 
 /* =========================================================
-   45. TABLET THEME TOGGLE
+   35. REDUCED MOTION
    ========================================================= */
 
-@media (max-width: 980px) {
+@media (prefers-reduced-motion: reduce) {
 
-  .theme-toggle {
-    width: 42px;
-    height: 42px;
-  }
-}
-
-
-/* =========================================================
-   46. MOBILE THEME TOGGLE
-   ========================================================= */
-
-@media (max-width: 600px) {
-
-  .theme-toggle {
-    width: 40px;
-    height: 40px;
-  }
-
+  .site-header,
+  .header-inner,
+  .brand,
+  .brand-mark,
+  .main-nav a,
+  .main-nav button,
+  .dropdown,
+  .dropdown a,
+  .menu-btn,
+  .menu-btn span,
+  .mobile-nav,
+  .theme-toggle,
   .theme-icon {
-    font-size: 22px;
+
+    transition: none !important;
   }
 }
-
-
 /* =========================================================
-   47. FINAL MOBILE SAFETY OVERRIDE
-   ---------------------------------------------------------
-   IMPORTANT:
-   This is intentionally at the END of the file.
-   It prevents any later/inline JS styling from making
-   the desktop navigation visible on mobile.
+   MOBILE MENU — FULL SCREEN OVERLAY
    ========================================================= */
 
 @media (max-width: 980px) {
 
-  html body .site-header .main-nav,
-  html body header.site-header nav.main-nav {
-    display: none !important;
+  /* Header stays above everything */
+  .site-header,
+  .site-header.is-scrolled {
+    position: fixed !important;
+    top: 0 !important;
+    left: 0 !important;
 
-    visibility: hidden !important;
+    width: 100vw !important;
+    max-width: 100vw !important;
+
+    height: auto !important;
+
+    margin: 0 !important;
+    padding: 0 !important;
+
+    transform: none !important;
+
+    border-radius: 0 !important;
+
+    z-index: 9999 !important;
+  }
+
+  /* Normal header row */
+  .site-header .header-inner,
+  .site-header.is-scrolled .header-inner {
+    width: 100% !important;
+    max-width: none !important;
+
+    min-height: 64px !important;
+    height: 64px !important;
+
+    margin: 0 !important;
+
+    padding: 0 14px !important;
+
+    box-sizing: border-box !important;
+
+    display: flex !important;
+    align-items: center !important;
+  }
+
+
+  /* =====================================================
+     FULL SCREEN MOBILE MENU
+     ===================================================== */
+
+  .mobile-nav {
+    position: fixed !important;
+
+    top: 0 !important;
+    left: 0 !important;
+
+    width: 100vw !important;
+    height: 100dvh !important;
+
+    max-width: none !important;
+    max-height: none !important;
+
+    margin: 0 !important;
+    padding: 0 !important;
+
+    box-sizing: border-box !important;
+
+    overflow-y: auto !important;
+    overflow-x: hidden !important;
+
+    display: block !important;
+
+    background:
+      linear-gradient(
+        180deg,
+        #16171d 0%,
+        #121317 100%
+      ) !important;
+
+    border: 0 !important;
+    border-radius: 0 !important;
 
     opacity: 0 !important;
-
-    width: 0 !important;
-    max-width: 0 !important;
-
-    overflow: hidden !important;
+    visibility: hidden !important;
 
     pointer-events: none !important;
+
+    transform: translateX(100%) !important;
+
+    z-index: 10000 !important;
+
+    transition:
+      transform 0.4s cubic-bezier(0.22, 1, 0.36, 1),
+      opacity 0.25s ease,
+      visibility 0.4s ease !important;
   }
 
-  html body .site-header .menu-btn {
-    display: flex !important;
+
+  /* OPEN */
+  .mobile-nav.open {
+    opacity: 1 !important;
 
     visibility: visible !important;
 
-    opacity: 1 !important;
-
-    width: 42px;
-
-    max-width: none;
-
     pointer-events: auto !important;
+
+    transform: translateX(0) !important;
+
+    max-height: none !important;
+  }
+
+
+  /* =====================================================
+     MOBILE MENU CONTENT
+     ===================================================== */
+
+  .mobile-nav > nav {
+    width: 100% !important;
+    min-height: 100dvh !important;
+
+    box-sizing: border-box !important;
+
+    padding:
+      150px 34px 50px !important;
+  }
+
+
+  .mobile-nav > nav > ul {
+    width: 100% !important;
+
+    margin: 0 !important;
+    padding: 0 !important;
+
+    list-style: none !important;
+  }
+
+
+  /* Remove old borders */
+  .mobile-nav > nav > ul > li {
+    border: 0 !important;
+  }
+
+
+  /* Main menu items */
+  .mobile-nav > nav > ul > li > a,
+  .mobile-nav .mobile-group > span {
+    display: flex !important;
+
+    align-items: center !important;
+
+    width: 100% !important;
+
+    min-height: 58px !important;
+
+    padding: 8px 0 !important;
+
+    box-sizing: border-box !important;
+
+    color: #ffffff !important;
+
+    font-family: var(--font-display) !important;
+
+    font-size: clamp(1.45rem, 6vw, 2rem) !important;
+
+    font-weight: 700 !important;
+
+    line-height: 1.15 !important;
+
+    text-decoration: none !important;
+
+    letter-spacing: -0.02em !important;
+
+    border: 0 !important;
+  }
+
+
+  /* Category arrow */
+  .mobile-nav .mobile-group > span::after {
+    content: "";
+
+    width: 9px;
+    height: 9px;
+
+    margin-left: auto;
+
+    border-right: 2px solid rgba(255,255,255,0.35);
+    border-bottom: 2px solid rgba(255,255,255,0.35);
+
+    transform: rotate(45deg) translateY(-3px);
+
+    flex-shrink: 0;
+  }
+
+
+  /* =====================================================
+     SUB ITEMS
+     ===================================================== */
+
+  .mobile-nav .mobile-group ul {
+    margin: 0 !important;
+
+    padding: 0 0 10px !important;
+
+    list-style: none !important;
+  }
+
+  .mobile-nav .mobile-group ul li {
+    border: 0 !important;
+  }
+
+  .mobile-nav .mobile-group ul li a {
+    display: block !important;
+
+    padding:
+      8px 0 8px 16px !important;
+
+    color:
+      rgba(255,255,255,0.65) !important;
+
+    font-family: var(--font-body) !important;
+
+    font-size: 0.95rem !important;
+
+    line-height: 1.4 !important;
+
+    border: 0 !important;
+  }
+
+
+  /* =====================================================
+     CTA
+     ===================================================== */
+
+  .mobile-nav .btn-block {
+    width: 100% !important;
+
+    margin-top: 30px !important;
+  }
+
+
+  /* =====================================================
+     HEADER ABOVE MENU
+     ===================================================== */
+
+  .site-header .header-inner {
+    position: relative;
+
+    z-index: 10001;
+  }
+
+  .site-header .brand,
+  .site-header .header-actions {
+    position: relative;
+
+    z-index: 10002;
+  }
+
+
+  /* =====================================================
+     HAMBURGER
+     ===================================================== */
+
+  .menu-btn {
+    position: relative;
+
+    z-index: 10003 !important;
+
+    display: flex !important;
+  }
+
+
+  /* When menu is open, make hamburger look like X */
+  .menu-btn[aria-expanded="true"] span:nth-child(1) {
+    transform:
+      translateY(6.5px)
+      rotate(45deg) !important;
+  }
+
+  .menu-btn[aria-expanded="true"] span:nth-child(2) {
+    opacity: 0 !important;
+  }
+
+  .menu-btn[aria-expanded="true"] span:nth-child(3) {
+    transform:
+      translateY(-6.5px)
+      rotate(-45deg) !important;
   }
 }
 
 
 /* =========================================================
-   48. FINAL MOBILE WIDTH SAFETY
+   SMALL PHONES
    ========================================================= */
 
 @media (max-width: 600px) {
 
-  html body .site-header {
-    box-sizing: border-box;
-
-    max-width: 100vw;
+  .mobile-nav > nav {
+    padding:
+      120px 28px 40px !important;
   }
 
-  html body .site-header .header-inner {
-    box-sizing: border-box;
+  .mobile-nav > nav > ul > li > a,
+  .mobile-nav .mobile-group > span {
+    font-size: 1.5rem !important;
 
-    max-width: 100%;
-  }
-
-  html body .site-header .mobile-nav {
-    box-sizing: border-box;
-
-    max-width: 100%;
-  }
-}
-
-
-/* =========================================================
-   49. ULTRA SMALL SCREEN SAFETY
-   ========================================================= */
-
-@media (max-width: 360px) {
-
-  .brand-name {
-    font-size: 0.90rem;
-  }
-
-  .brand {
-    gap: 6px;
-  }
-
-  .header-actions {
-    gap: 5px !important;
-  }
-
-  .theme-toggle {
-    width: 38px;
-    height: 38px;
-  }
-
-  .menu-btn {
-    width: 38px;
-    height: 38px;
-  }
-
-  .theme-icon {
-    font-size: 20px;
+    min-height: 54px !important;
   }
 }
