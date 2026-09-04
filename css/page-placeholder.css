@@ -1,0 +1,71 @@
+/* =========================================================
+   page-placeholder.css
+   Shared styling for the standalone placeholder pages
+   (Vocalis, Saral Rojgar, Generative AI, Mobile & Web
+   Development, Creative AI) until their full content is
+   built out in a later phase. Relies entirely on the design
+   tokens and utility classes already defined in base.css.
+   ========================================================= */
+
+.page-placeholder {
+  min-height: 60vh;
+  display: flex;
+  align-items: center;
+  padding-top: clamp(64px, 12vh, 120px);
+  padding-bottom: clamp(64px, 12vh, 120px);
+}
+
+.page-placeholder .section-inner {
+  max-width: 720px;
+}
+
+.page-placeholder .breadcrumb {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-family: var(--font-body);
+  font-size: 0.85rem;
+  color: var(--text-faint);
+  margin-bottom: 24px;
+}
+
+.page-placeholder .breadcrumb a {
+  color: var(--text-muted);
+  text-decoration: none;
+}
+
+.page-placeholder .breadcrumb a:hover {
+  color: var(--accent);
+}
+
+.page-placeholder .status-pill {
+  display: inline-block;
+  padding: 6px 14px;
+  border: 1px solid var(--border);
+  border-radius: 999px;
+  background: var(--accent-soft-2);
+  color: var(--accent-strong);
+  font-family: var(--font-body);
+  font-size: 0.78rem;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  margin-bottom: 20px;
+}
+
+.page-placeholder .section-lead {
+  max-width: 60ch;
+}
+
+.page-placeholder .placeholder-ctas {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 14px;
+  margin-top: 32px;
+}
+
+@media (max-width: 480px) {
+  .page-placeholder .placeholder-ctas {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+}

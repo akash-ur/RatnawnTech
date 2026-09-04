@@ -1,0 +1,367 @@
+/* =========================================================
+   products.css — styles for sections/products.html only
+   ========================================================= */
+
+/* ==========================================================================
+   Our Products
+   ========================================================================== */
+.product-block {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+  gap: clamp(28px, 5vw, 64px);
+  align-items: center;
+  padding: clamp(32px, 5vw, 48px) 0;
+}
+.product-block + .product-block {
+  border-top: 1px solid var(--border-soft);
+}
+.product-block-reverse .product-copy { order: 2; }
+.product-block-reverse .product-visual { order: 1; }
+
+.product-kicker {
+  display: inline-block;
+  font-size: 0.78rem;
+  color: var(--accent);
+  font-family: var(--font-display);
+  font-weight: 600;
+  margin-bottom: 10px;
+}
+.product-copy h3 {
+  font-size: clamp(1.6rem, 2.6vw, 2.1rem);
+  margin-bottom: 14px;
+}
+.product-desc {
+  color: var(--text-muted);
+  max-width: 52ch;
+  margin-bottom: 22px;
+}
+
+.capability-grid {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+.capability-grid li {
+  font-size: 0.8rem;
+  color: var(--text-muted);
+  border: 1px solid var(--border);
+  border-radius: 100px;
+  padding: 6px 12px;
+}
+
+.product-visual { position: relative; }
+.mock {
+  background: var(--bg-raised);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-lg);
+  padding: 18px;
+}
+.mock-asset-note {
+  margin-top: 14px;
+  font-size: 0.72rem;
+  color: var(--text-faint);
+  text-align: center;
+}
+
+.mock-label {
+  display: block;
+  font-size: 0.7rem;
+  color: var(--text-faint);
+  margin-bottom: 10px;
+}
+.mock-line {
+  height: 6px;
+  border-radius: 3px;
+  background: var(--border);
+  margin-bottom: 6px;
+}
+.mock-line.short { width: 55%; }
+.mock-pill {
+  display: inline-block;
+  font-size: 0.68rem;
+  padding: 4px 9px;
+  border-radius: 100px;
+  background: var(--accent-soft);
+  color: var(--accent-strong);
+  margin-right: 6px;
+}
+.mock-pill-outline {
+  background: transparent;
+  border: 1px solid var(--border);
+  color: var(--text-muted);
+}
+
+/* ==========================================================================
+   Vocalis — call dashboard mockup
+   Scoped entirely to its own .vocalis-* classes so nothing here can
+   affect the Saral Rojgar / Creative AI mockups or any other section.
+   ========================================================== */
+
+.vocalis-dashboard {
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+}
+
+/* Call header / status */
+.vocalis-dash-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding-bottom: 14px;
+  border-bottom: 1px solid var(--border-soft);
+}
+.vocalis-live {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  font-family: var(--font-display);
+  font-size: 0.82rem;
+  font-weight: 600;
+  color: var(--text);
+}
+.vocalis-live-dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: var(--accent);
+  box-shadow: 0 0 0 0 var(--accent-soft);
+  animation: vocalis-pulse 2.2s ease-in-out infinite;
+}
+.vocalis-dash-status {
+  font-size: 0.75rem;
+  color: var(--text-faint);
+}
+@keyframes vocalis-pulse {
+  0%, 100% { box-shadow: 0 0 0 0 rgba(53, 207, 255, 0.35); }
+  50% { box-shadow: 0 0 0 6px rgba(53, 207, 255, 0); }
+}
+
+/* Voice waveform */
+.vocalis-waveform-block { display: flex; flex-direction: column; }
+.vocalis-waveform {
+  display: flex;
+  align-items: flex-end;
+  gap: 4px;
+  height: 40px;
+}
+.vocalis-waveform i {
+  width: 4px;
+  border-radius: 2px;
+  background: var(--accent);
+  opacity: 0.85;
+  animation: vocalis-wave 1.6s ease-in-out infinite;
+}
+.vocalis-waveform i:nth-child(1) { height: 35%; animation-delay: 0s; }
+.vocalis-waveform i:nth-child(2) { height: 60%; animation-delay: 0.08s; }
+.vocalis-waveform i:nth-child(3) { height: 90%; animation-delay: 0.16s; }
+.vocalis-waveform i:nth-child(4) { height: 50%; animation-delay: 0.24s; }
+.vocalis-waveform i:nth-child(5) { height: 100%; animation-delay: 0.32s; }
+.vocalis-waveform i:nth-child(6) { height: 45%; animation-delay: 0.40s; }
+.vocalis-waveform i:nth-child(7) { height: 75%; animation-delay: 0.48s; }
+.vocalis-waveform i:nth-child(8) { height: 55%; animation-delay: 0.56s; }
+.vocalis-waveform i:nth-child(9) { height: 95%; animation-delay: 0.64s; }
+.vocalis-waveform i:nth-child(10) { height: 40%; animation-delay: 0.72s; }
+.vocalis-waveform i:nth-child(11) { height: 70%; animation-delay: 0.80s; }
+.vocalis-waveform i:nth-child(12) { height: 30%; animation-delay: 0.88s; }
+@keyframes vocalis-wave {
+  0%, 100% { transform: scaleY(0.45); }
+  50% { transform: scaleY(1); }
+}
+
+/* Transcript */
+.vocalis-transcript { display: flex; flex-direction: column; }
+.vocalis-transcript-lines {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+.vocalis-transcript-line {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  opacity: 0;
+  transform: translateY(6px);
+}
+.vocalis-speaker {
+  flex-shrink: 0;
+  width: 58px;
+  font-size: 0.68rem;
+  color: var(--text-faint);
+}
+.vocalis-speaker-customer .vocalis-speaker { color: var(--accent-strong); }
+.vocalis-line-bar {
+  flex: 1;
+  height: 6px;
+  border-radius: 3px;
+  background: var(--border);
+}
+.vocalis-line-bar.short { max-width: 55%; }
+
+/* Call outcome */
+.vocalis-outcome { display: flex; flex-direction: column; }
+.vocalis-outcome-pills {
+  opacity: 0;
+  transform: translateY(6px);
+}
+
+/* Reveal choreography — reuses the site-wide .reveal/.in-view scroll
+   pattern already applied to .product-block by js/main.js, so the
+   transcript lines and outcome pills settle in just after the card
+   itself fades into view. No new JS needed. */
+.product-block.in-view .vocalis-transcript-line,
+.product-block.in-view .vocalis-outcome-pills {
+  animation: vocalis-line-in 0.5s ease forwards;
+}
+.product-block.in-view .vocalis-transcript-line:nth-child(1) { animation-delay: 0.15s; }
+.product-block.in-view .vocalis-transcript-line:nth-child(2) { animation-delay: 0.32s; }
+.product-block.in-view .vocalis-transcript-line:nth-child(3) { animation-delay: 0.49s; }
+.product-block.in-view .vocalis-outcome-pills { animation-delay: 0.68s; }
+@keyframes vocalis-line-in {
+  to { opacity: 1; transform: translateY(0); }
+}
+
+.mock-phone {
+  max-width: 280px;
+  margin: 0 auto;
+}
+.mock-phone-notch {
+  width: 60px;
+  height: 5px;
+  border-radius: 4px;
+  background: var(--border);
+  margin: 0 auto 14px;
+}
+.mock-phone-screen {
+  background: var(--bg-raised-2);
+  border-radius: var(--radius-md);
+  padding: 16px;
+  min-height: 320px;
+}
+.mock-phone-header { margin-bottom: 12px; }
+.mock-phone-card {
+  height: 46px;
+  border-radius: var(--radius-sm);
+  border: 1px solid var(--border);
+  margin-bottom: 10px;
+  background: linear-gradient(120deg, var(--accent-soft-2), transparent);
+}
+.mock-phone-card-short { width: 70%; }
+.mock-phone-chat { margin-top: 16px; }
+.mock-chat-bubble {
+  display: inline-block;
+  font-size: 0.72rem;
+  background: var(--accent-soft);
+  color: var(--accent-strong);
+  padding: 8px 12px;
+  border-radius: 12px 12px 12px 2px;
+}
+
+.creative-pipeline {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 10px;
+  flex-wrap: wrap;
+}
+.pipeline-step {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 10px;
+  flex: 1;
+  min-width: 100px;
+}
+.pipeline-tile {
+  width: 100%;
+  aspect-ratio: 1;
+  border-radius: var(--radius-md);
+  border: 1px solid var(--border);
+  background: var(--bg-raised);
+  position: relative;
+}
+.pipeline-tile-original { background: linear-gradient(160deg, var(--bg-raised-2), var(--bg-raised)); }
+.pipeline-tile-model { background: linear-gradient(160deg, var(--accent-soft), var(--bg-raised)); }
+.pipeline-tile-lifestyle { background: linear-gradient(160deg, var(--accent-soft-2), var(--bg-raised-2)); }
+.pipeline-tile-reel { background: linear-gradient(160deg, var(--bg-raised-2), var(--bg-raised)); display: flex; align-items: center; justify-content: center; }
+.pipeline-caption { font-size: 0.76rem; color: var(--text-muted); }
+.pipeline-arrow { color: var(--text-faint); font-size: 1.1rem; }
+
+.two-col-list {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 24px;
+  margin-bottom: 20px;
+}
+.two-col-list h4 {
+  font-size: 0.82rem;
+  color: var(--accent);
+  margin-bottom: 12px;
+}
+.plain-list {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+.plain-list li {
+  font-size: 0.86rem;
+  color: var(--text-muted);
+  padding-left: 14px;
+  position: relative;
+}
+.plain-list li::before {
+  content: "";
+  position: absolute;
+  left: 0; top: 8px;
+  width: 4px; height: 4px;
+  border-radius: 50%;
+  background: var(--accent);
+}
+.store-note {
+  font-size: 0.85rem;
+  color: var(--text-muted);
+  margin-bottom: 12px;
+}
+.store-badges {
+  display: flex;
+  gap: 10px;
+}
+.store-badge {
+  font-size: 0.78rem;
+  font-family: var(--font-display);
+  font-weight: 600;
+  border: 1px solid var(--border);
+  border-radius: var(--radius-sm);
+  padding: 8px 14px;
+  color: var(--text-muted);
+}
+
+.mini-frame.small {
+  height: 40px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.play-dot {
+  width: 0; height: 0;
+  border-style: solid;
+  border-width: 8px 0 8px 13px;
+  border-color: transparent transparent transparent var(--accent);
+}
+
+
+/* ---------- Responsive ---------- */
+@media (max-width: 980px) {
+  .product-block { grid-template-columns: 1fr; }
+  .product-block-reverse .product-copy { order: 1; }
+  .product-block-reverse .product-visual { order: 2; }
+  .two-col-list { grid-template-columns: 1fr; gap: 16px; }
+}
+@media (max-width: 600px) {
+  .creative-pipeline { flex-direction: column; }
+  .pipeline-arrow { transform: rotate(90deg); }
+
+  .vocalis-waveform { height: 32px; gap: 3px; }
+  .vocalis-speaker { width: 46px; }
+}

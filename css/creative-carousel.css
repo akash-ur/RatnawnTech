@@ -1,0 +1,392 @@
+/* =========================================================
+   CREATIVE (RatNawnAI Creative) CAROUSEL
+   Product 03 visual showcase — scoped entirely to its own
+   .creative-* classes so nothing here can affect the Vocalis
+   or Saral Rojgar carousels. Visual treatment (card, border,
+   radius, controls) mirrors .saral-carousel intentionally.
+   ========================================================= */
+
+.creative-visual {
+  display: flex;
+  align-items: center;
+}
+
+/* =========================================================
+   CAROUSEL BOX
+   ========================================================= */
+
+.creative-carousel {
+  position: relative;
+  width: 100%;
+  max-width: 480px;
+  height: 480px;
+
+  margin: 0 auto;
+  padding: 16px;
+
+  box-sizing: border-box;
+
+  background: var(--bg-raised);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-lg);
+
+  outline: none;
+}
+
+/* =========================================================
+   FRAME
+   ========================================================= */
+
+.creative-carousel-frame {
+  position: relative;
+
+  width: 100%;
+  height: 400px;
+
+  min-height: 0;
+}
+
+/* =========================================================
+   SLIDES
+   ========================================================= */
+
+.cr-slide {
+  position: absolute;
+  inset: 0;
+
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+
+  opacity: 0;
+  visibility: hidden;
+  pointer-events: none;
+
+  transition: opacity 0.45s ease;
+}
+
+.cr-slide.is-active {
+  position: relative;
+
+  opacity: 1;
+  visibility: visible;
+  pointer-events: auto;
+}
+
+/* =========================================================
+   TOP BAR (shared look with sr-topbar / vs-topbar)
+   ========================================================= */
+
+.cr-topbar {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+
+  padding-bottom: 14px;
+  border-bottom: 1px solid var(--border-soft);
+
+  flex-shrink: 0;
+}
+
+.cr-logo-dot {
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  background: var(--accent);
+  flex-shrink: 0;
+}
+
+.cr-eyebrow {
+  font-family: var(--font-display);
+  font-weight: 600;
+  font-size: 0.78rem;
+  color: var(--accent);
+  flex-shrink: 0;
+}
+
+.cr-title {
+  font-family: var(--font-display);
+  font-weight: 600;
+  font-size: 0.86rem;
+  color: var(--text);
+
+  padding-left: 8px;
+  border-left: 1px solid var(--border);
+
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+/* =========================================================
+   MEDIA AREA (shared by image + video slides)
+   ========================================================= */
+
+.cr-media-frame {
+  flex: 1;
+  min-height: 0;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  overflow: hidden;
+}
+
+.cr-image {
+  display: block;
+  width: auto;
+  height: 300px;
+
+  max-width: 90%;
+  max-height: 300px;
+
+  object-fit: contain;
+
+  border-radius: var(--radius-md);
+  border: 1px solid var(--border-soft);
+}
+
+/* Video slide keeps its own aspect ratio inside the same
+   frame footprint as the image slides, and never spills
+   past the frame into the controls below. */
+.creative-reel-video {
+  display: block;
+  width: auto;
+  height: 300px;
+
+  max-width: 90%;
+  max-height: 300px;
+
+  object-fit: contain;
+
+  border-radius: var(--radius-md);
+  border: 1px solid var(--border-soft);
+  background: var(--bg-raised-2);
+}
+
+/* =========================================================
+   CAROUSEL CONTROLS
+   ========================================================= */
+
+.creative-carousel-controls {
+  position: relative;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 14px;
+
+  width: 100%;
+  height: 40px;
+
+  padding-top: 10px;
+  margin-top: 8px;
+
+  box-sizing: border-box;
+  border-top: 1px solid var(--border-soft);
+
+  flex-shrink: 0;
+}
+
+/* =========================================================
+   ARROWS
+   ========================================================= */
+
+.creative-arrow {
+  flex-shrink: 0;
+
+  width: 30px;
+  height: 30px;
+
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+
+  padding: 0;
+  background: transparent;
+  border: 1px solid var(--border);
+  border-radius: 50%;
+  color: var(--text-muted);
+
+  cursor: pointer;
+
+  transition:
+    border-color 0.2s ease,
+    color 0.2s ease,
+    transform 0.2s ease;
+}
+
+.creative-arrow svg {
+  width: 15px;
+  height: 15px;
+}
+
+.creative-arrow:hover {
+  border-color: var(--accent);
+  color: var(--accent-strong);
+  transform: scale(1.05);
+}
+
+/* =========================================================
+   DOTS
+   ========================================================= */
+
+.creative-carousel-dots {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+
+  min-width: 50px;
+}
+
+.creative-dot {
+  display: block;
+  width: 7px;
+  height: 7px;
+  min-width: 7px;
+  min-height: 7px;
+
+  padding: 0;
+  border: none;
+  border-radius: 50%;
+  background: var(--border);
+
+  cursor: pointer;
+  opacity: 1;
+  appearance: none;
+
+  transition:
+    background 0.2s ease,
+    transform 0.2s ease,
+    opacity 0.2s ease;
+}
+
+.creative-dot.is-active {
+  background: var(--accent);
+  transform: scale(1.4);
+  opacity: 1;
+}
+
+/* =========================================================
+   COUNTER
+   ========================================================= */
+
+.creative-carousel-count {
+  display: inline-block;
+  min-width: 34px;
+  text-align: center;
+
+  font-family: var(--font-display);
+  font-size: 0.72rem;
+  color: var(--text-faint);
+  font-variant-numeric: tabular-nums;
+}
+
+.creative-count-sep {
+  margin: 0 2px;
+}
+
+/* =========================================================
+   SLIDE LABEL (bottom-left tag on the media itself)
+   ========================================================= */
+
+.cr-slide-label {
+  align-self: flex-start;
+  font-size: 0.7rem;
+  font-family: var(--font-display);
+  font-weight: 600;
+  color: var(--text-faint);
+}
+
+/* =========================================================
+   ACCESSIBILITY
+   ========================================================= */
+
+.creative-visually-hidden {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+
+  padding: 0;
+  margin: -1px;
+
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
+}
+
+/* =========================================================
+   FOCUS
+   ========================================================= */
+
+.creative-carousel:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 4px;
+}
+
+/* =========================================================
+   TABLET
+   ========================================================= */
+
+@media (max-width: 980px) {
+  #product-creative .creative-carousel {
+    max-width: 420px;
+    height: 460px;
+  }
+
+  #product-creative .creative-carousel-frame {
+    height: 380px;
+  }
+
+  #product-creative .cr-image,
+  #product-creative .creative-reel-video {
+    height: 280px;
+    max-height: 280px;
+    max-width: 90%;
+  }
+}
+
+/* =========================================================
+   MOBILE
+   ========================================================= */
+
+@media (max-width: 600px) {
+  #product-creative .creative-carousel {
+    max-width: 100%;
+    height: 440px;
+    padding: 14px;
+  }
+
+  #product-creative .creative-carousel-frame {
+    height: 360px;
+  }
+
+  #product-creative .cr-image,
+  #product-creative .creative-reel-video {
+    height: 250px;
+    max-height: 250px;
+    max-width: 90%;
+  }
+
+  .cr-title {
+    max-width: 150px;
+  }
+
+  .creative-arrow {
+    width: 34px;
+    height: 34px;
+  }
+}
+
+/* =========================================================
+   REDUCED MOTION
+   ========================================================= */
+
+@media (prefers-reduced-motion: reduce) {
+  .cr-slide {
+    transition: none;
+  }
+}

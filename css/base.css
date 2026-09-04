@@ -1,0 +1,442 @@
+/* =========================================================
+   base.css — design tokens, reset, global typography/layout
+   primitives, buttons and the shared scroll-reveal utility
+   ========================================================= */
+
+
+/* ========================================================================== 
+   RatNawn Tech — Design Tokens
+   ========================================================================== */
+
+:root {
+  /* Core surfaces — deep black / dark navy, per the RatNawn Tech
+     "modern AI technology" palette. */
+  --bg: #070B12;
+  --bg-raised: #0D131C;
+  --bg-raised-2: #121B26;
+
+  /* Borders & subtle UI highlights are cyan-tinted (low-alpha over
+     the dark surfaces) rather than a flat grey/brown line. */
+  --border: rgba(53, 207, 255, 0.18);
+  --border-soft: rgba(53, 207, 255, 0.09);
+
+  /* Text: white/off-white primary, light cool grey secondary. */
+  --text: #F5F7FA;
+  --text-muted: #9AA7B5;
+  --text-faint: #6B7684;
+
+  /* Cyan — the primary technology accent. Used for borders, hover
+     states, icons, small headings, focus outlines and highlights
+     throughout the site (kept under the existing --accent* names
+     so every section stylesheet picks it up automatically). */
+  --accent: #35CFFF;
+  --accent-strong: #19B8F2;
+  --accent-deep: #1C7FA0;
+  --accent-soft: rgba(53, 207, 255, 0.12);
+  --accent-soft-2: rgba(53, 207, 255, 0.06);
+
+  /* Gold — secondary accent only. Reserved for the important
+     primary CTA buttons and very small highlights; everything
+     else in the UI now runs on cyan above. */
+  --gold: #D9A441;
+  --gold-strong: #E8B85C;
+
+  --font-display: "Space Grotesk", "Segoe UI", sans-serif;
+  --font-body: "IBM Plex Sans", "Segoe UI", sans-serif;
+
+  --radius-sm: 6px;
+  --radius-md: 10px;
+  --radius-lg: 16px;
+
+  --container: 1180px;
+  --gutter: clamp(20px, 5vw, 64px);
+}
+
+
+/* ========================================================================== 
+   RESET
+   ========================================================================== */
+
+* {
+  box-sizing: border-box;
+}
+
+
+/* ========================================================================== 
+   HTML
+   ========================================================================== */
+
+html {
+  scroll-behavior: smooth;
+}
+
+
+/* ========================================================================== 
+   REDUCED MOTION
+   ========================================================================== */
+
+@media (prefers-reduced-motion: reduce) {
+
+  html {
+    scroll-behavior: auto;
+  }
+
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+
+}
+
+
+/* ========================================================================== 
+   BODY
+   ========================================================================== */
+
+body {
+  margin: 0;
+
+  background:
+    radial-gradient(
+      circle at 12% 8%,
+      rgba(53, 207, 255, 0.07),
+      transparent 30%
+    ),
+    radial-gradient(
+      circle at 88% 18%,
+      rgba(53, 207, 255, 0.04),
+      transparent 28%
+    ),
+    var(--bg);
+
+  background-attachment: fixed;
+
+  color: var(--text);
+
+  font-family: var(--font-body);
+
+  font-size: 16px;
+
+  line-height: 1.6;
+
+  -webkit-font-smoothing: antialiased;
+
+  overflow-x: hidden;
+}
+
+
+/* ========================================================================== 
+   GLOBAL TYPOGRAPHY
+   ========================================================================== */
+
+h1,
+h2,
+h3,
+h4 {
+  font-family: var(--font-display);
+
+  font-weight: 600;
+
+  line-height: 1.15;
+
+  margin: 0;
+
+  letter-spacing: -0.01em;
+}
+
+
+p {
+  margin: 0;
+}
+
+
+a {
+  color: inherit;
+
+  text-decoration: none;
+}
+
+
+ul {
+  list-style: none;
+
+  margin: 0;
+
+  padding: 0;
+}
+
+
+img {
+  max-width: 100%;
+
+  display: block;
+}
+
+
+/* ========================================================================== 
+   SKIP LINK
+   ========================================================================== */
+
+.skip-link {
+  position: absolute;
+
+  left: -999px;
+
+  top: 0;
+
+  background: var(--accent);
+
+  color: #100D06;
+
+  padding: 10px 16px;
+
+  z-index: 200;
+
+  border-radius: 0 0 var(--radius-sm) 0;
+}
+
+
+.skip-link:focus {
+  left: 0;
+}
+
+
+/* ========================================================================== 
+   FOCUS
+   ========================================================================== */
+
+:focus-visible {
+  outline: 2px solid var(--accent);
+
+  outline-offset: 3px;
+}
+
+
+/* ========================================================================== 
+   SECTION LAYOUT
+   ========================================================================== */
+
+.section-inner {
+  max-width: var(--container);
+
+  margin: 0 auto;
+
+  padding: 0 var(--gutter);
+}
+
+
+.section {
+  padding: clamp(64px, 9vw, 120px) 0;
+
+  border-top: 1px solid var(--border-soft);
+}
+
+
+.section-heading {
+  font-size: clamp(1.75rem, 3vw, 2.5rem);
+
+  max-width: 26ch;
+
+  margin-bottom: clamp(32px, 5vw, 56px);
+}
+
+
+.section-lead {
+  color: var(--text-muted);
+
+  max-width: 56ch;
+
+  margin-top: -24px;
+
+  margin-bottom: 40px;
+}
+
+
+/* ========================================================================== 
+   BUTTONS
+   ========================================================================== */
+
+.btn {
+  display: inline-flex;
+
+  align-items: center;
+
+  justify-content: center;
+
+  padding: 13px 24px;
+
+  border-radius: var(--radius-sm);
+
+  font-family: var(--font-display);
+
+  font-weight: 600;
+
+  font-size: 0.95rem;
+
+  border: 1px solid transparent;
+
+  transition:
+    background 0.2s ease,
+    border-color 0.2s ease,
+    transform 0.15s ease;
+
+  white-space: nowrap;
+}
+
+
+.btn-primary {
+  background: var(--gold);
+
+  color: #14100A;
+}
+
+
+.btn-primary:hover {
+  background: var(--gold-strong);
+
+  transform: translateY(-1px);
+}
+
+
+.btn-ghost {
+  background: transparent;
+
+  color: var(--text);
+
+  border-color: var(--border);
+}
+
+
+.btn-ghost:hover {
+  border-color: var(--accent);
+
+  color: var(--accent-strong);
+}
+
+
+.btn-block {
+  display: flex;
+
+  width: 100%;
+
+  margin-top: 24px;
+}
+
+
+/* ========================================================================== 
+   SCROLL REVEAL
+   ========================================================================== */
+
+.reveal {
+  opacity: 0;
+
+  transform: translateY(16px);
+
+  transition:
+    opacity 0.6s ease,
+    transform 0.6s ease;
+}
+
+
+.reveal.in-view {
+  opacity: 1;
+
+  transform: translateY(0);
+}
+
+
+/* ========================================================================== 
+   LIGHT MODE — DESIGN TOKENS
+   ========================================================================== */
+
+html.light-mode {
+
+  --bg: #F5F2EC;
+
+  --bg-raised: #FFFFFF;
+
+  --bg-raised-2: #F0ECE4;
+
+  --border: #DDD6C8;
+
+  --border-soft: #E8E1D5;
+
+  --text: #211E18;
+
+  --text-muted: #6F685D;
+
+  --text-faint: #91887A;
+
+  --accent: #B98220;
+
+  --accent-strong: #C9922D;
+
+  --accent-deep: #8D651B;
+
+  --accent-soft: rgba(185, 130, 32, 0.10);
+
+  --accent-soft-2: rgba(185, 130, 32, 0.05);
+}
+
+
+/* ========================================================================== 
+   LIGHT MODE — PAGE BACKGROUND
+   ========================================================================== */
+
+html.light-mode body {
+
+  background:
+    radial-gradient(
+      circle at 12% 8%,
+      rgba(197, 141, 39, 0.09),
+      transparent 30%
+    ),
+    radial-gradient(
+      circle at 88% 18%,
+      rgba(197, 141, 39, 0.05),
+      transparent 28%
+    ),
+    var(--bg);
+
+  background-attachment: fixed;
+
+  color: var(--text);
+}
+
+
+/* ========================================================================== 
+   LIGHT MODE — COMMON ELEMENTS
+   ========================================================================== */
+
+html.light-mode .section {
+  border-top-color: var(--border-soft);
+}
+
+
+html.light-mode .btn-ghost {
+  color: var(--text);
+
+  border-color: var(--border);
+}
+
+
+html.light-mode .btn-ghost:hover {
+  border-color: var(--accent);
+
+  color: var(--accent-deep);
+}
+
+
+/* ========================================================================== 
+   LIGHT MODE — SELECTION
+   ========================================================================== */
+
+html.light-mode ::selection {
+  background: rgba(185, 130, 32, 0.20);
+
+  color: var(--text);
+}

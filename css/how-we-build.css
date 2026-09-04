@@ -1,0 +1,36 @@
+/* =========================================================
+   how-we-build.css — styles for sections/how-we-build.html only
+   ========================================================= */
+
+/* ==========================================================================
+   How We Build
+   ========================================================================== */
+.timeline {
+  display: flex;
+  flex-direction: column;
+}
+.timeline li {
+  display: grid;
+  grid-template-columns: 64px 1fr;
+  gap: 24px;
+  padding: 22px 0;
+  border-top: 1px solid var(--border-soft);
+}
+.timeline li:last-child {
+  border-bottom: 1px solid var(--border-soft);
+}
+.timeline-index {
+  font-family: var(--font-display);
+  color: var(--accent);
+  font-weight: 600;
+}
+.timeline h3 {
+  font-size: 1.05rem;
+  margin-bottom: 6px;
+}
+.timeline p {
+  color: var(--text-muted);
+  font-size: 0.9rem;
+  max-width: 56ch;
+}
+

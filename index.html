@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>RatNawn Tech — AI Products. Intelligent Automation. Digital Engineering.</title>
+<meta name="description" content="RatNawn Tech builds its own AI products — Vocalis, Saral Rojgar and RatNawnAI Creative — and custom Generative AI, agentic AI, mobile and web technology for real businesses.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&family=IBM+Plex+Sans:wght@400;500;600&display=swap" rel="stylesheet">
+
+<!-- base.css MUST load first — it defines the shared tokens
+     (colors/fonts/reset/buttons) that every other section
+     stylesheet depends on. -->
+<link rel="stylesheet" href="css/base.css">
+<link rel="stylesheet" href="css/header.css">
+<link rel="stylesheet" href="css/hero.css">
+<link rel="stylesheet" href="css/products.css">
+<link rel="stylesheet" href="css/vocalis-carousel.css">
+<link rel="stylesheet" href="css/saral-carousel.css">
+<link rel="stylesheet" href="css/creative-carousel.css">
+<link rel="stylesheet" href="css/what-we-build.css">
+<link rel="stylesheet" href="css/creative-portfolio.css">
+<link rel="stylesheet" href="css/use-cases.css">
+<link rel="stylesheet" href="css/why-ratnawn.css">
+<link rel="stylesheet" href="css/industries.css">
+<link rel="stylesheet" href="css/products-in-action.css">
+<link rel="stylesheet" href="css/how-we-build.css">
+<link rel="stylesheet" href="css/about.css">
+<link rel="stylesheet" href="css/contact.css">
+<link rel="stylesheet" href="css/footer.css">
+</head>
+<body>
+
+<!--
+  DRAFT NOTE: This homepage is built from RatNawn_Website_Revamp_Brief.docx.
+  P0 (this phase) = complete, polished, demo-ready Home Page — done below.
+  Product/service CTAs like "Explore Vocalis", "Explore GenAI", "Build a
+  Mobile App" now point to their real standalone placeholder pages under
+  /pages/<name>/index.html — the 5 required standalone pages: vocalis,
+  saral-rojgar, generative-ai, mobile-web-development, creative-ai. Those
+  pages are intentionally minimal "coming soon" placeholders for this
+  phase — full content on each is a later phase, per the brief's
+  priority order. All other nav items (About, Contact, Use Cases,
+  Industries, Products overview) still scroll to their Home Page section
+  — they don't have standalone pages yet.
+  Product screenshots/dashboards on this Home Page are still illustrative
+  placeholders (marked "asset pending") — swap for real UI once real
+  Vocalis/Saral Rojgar/creative screenshots are provided.
+-->
+
+<a class="skip-link" href="#main">Skip to content</a>
+
+<!-- Each section below is its own file inside /sections/ and is
+     fetched + injected here by js/include.js -->
+
+<div data-include="sections/header.html"></div>
+
+<main id="main">
+  <div data-include="sections/hero.html"></div>
+  <div data-include="sections/products.html"></div>
+  <div data-include="sections/what-we-build.html"></div>
+  <div data-include="sections/creative-portfolio.html"></div>
+  <div data-include="sections/use-cases.html"></div>
+  <div data-include="sections/why-ratnawn.html"></div>
+  <div data-include="sections/industries.html"></div>
+  <div data-include="sections/products-in-action.html"></div>
+  <div data-include="sections/how-we-build.html"></div>
+  <div data-include="sections/about.html"></div>
+  <div data-include="sections/contact.html"></div>
+</main>
+
+<div data-include="sections/footer.html"></div>
+
+<script src="js/header.js"></script>
+<script src="js/vocalis-carousel.js"></script>
+<script src="js/saral-carousel.js"></script>
+<script src="js/creative-carousel.js"></script>
+<script src="js/main.js"></script>
+<script src="js/include.js"></script>
+</body>
+</html>
