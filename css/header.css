@@ -1982,3 +1982,64 @@ html.light-mode .menu-btn span {
     min-height: 54px !important;
   }
 }
+/* =========================================================
+   MOBILE MENU — LIGHT MODE FIX
+   ========================================================= */
+
+/* Light mode: mobile menu */
+html.light-mode .mobile-nav,
+body.light-mode .mobile-nav {
+  background: linear-gradient(
+    180deg,
+    rgba(255, 255, 255, 0.99),
+    rgba(245, 242, 236, 0.99)
+  ) !important;
+
+  border-bottom-color: rgba(0, 0, 0, 0.08) !important;
+
+  color: #211f1b;
+}
+
+/* Main mobile menu links */
+html.light-mode .mobile-nav > nav > ul > li > a,
+body.light-mode .mobile-nav > nav > ul > li > a {
+  color: #211f1b !important;
+}
+
+/* Category headings */
+html.light-mode .mobile-nav .mobile-group > span,
+body.light-mode .mobile-nav .mobile-group > span {
+  color: #6f685e !important;
+}
+
+/* Sub links */
+html.light-mode .mobile-nav .mobile-group ul li a,
+body.light-mode .mobile-nav .mobile-group ul li a {
+  color: rgba(33, 31, 27, 0.68) !important;
+
+  border-left-color: rgba(0, 0, 0, 0.10) !important;
+}
+
+/* Hover */
+html.light-mode .mobile-nav > nav > ul > li > a:hover,
+body.light-mode .mobile-nav > nav > ul > li > a:hover {
+  color: var(--accent) !important;
+}
+
+html.light-mode .mobile-nav .mobile-group ul li a:hover,
+body.light-mode .mobile-nav .mobile-group ul li a:hover {
+  color: #211f1b !important;
+  border-left-color: var(--accent) !important;
+}
+
+/* Separators */
+html.light-mode .mobile-nav > nav > ul > li,
+body.light-mode .mobile-nav > nav > ul > li {
+  border-bottom-color: rgba(0, 0, 0, 0.07) !important;
+}
+
+/* Mobile CTA */
+html.light-mode .mobile-nav .btn-primary,
+body.light-mode .mobile-nav .btn-primary {
+  color: #fff;
+}
