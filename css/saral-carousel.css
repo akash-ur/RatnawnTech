@@ -371,11 +371,11 @@
    ========================================================= */
 
 #product-saral .product-visual {
-  order: 1;
+  order: 2;
 }
 
 #product-saral .product-copy {
-  order: 2;
+  order: 1;
 }
 
 
